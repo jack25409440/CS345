@@ -1,0 +1,4 @@
+main = do
+       print (let x=2 
+                  in
+                   x+2)

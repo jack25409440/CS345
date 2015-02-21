@@ -1,0 +1,12 @@
+all:
+	happy -gca ParMiniJS.y
+	alex -g LexMiniJS.x
+	latex DocMiniJS.tex
+	dvips DocMiniJS.dvi -o DocMiniJS.ps
+	ghc --make TestMiniJS.hs -o TestMiniJS
+
+
+clean:
+	 rm -f *.log *.aux *.hi *.o *.dvi DocMiniJS.ps *.o
+distclean: clean
+	 rm -f DocMiniJS.* LexMiniJS.* ParMiniJS.* ParMiniJSData.* LayoutMiniJS.* SkelMiniJS.* PrintMiniJS.* TestMiniJS.* AbsMiniJS.* TestMiniJS ErrM.* SharedString.* MiniJS.dtd XMLMiniJS.* Makefile*

@@ -1,0 +1,60 @@
+Var.      Seq ::= "var" Ident "=" Exp ";" Seq;
+Sequence. Seq ::= Stat Seq;
+Seqstat.  Seq ::= Stat ;
+
+ExpStat.  Stat ::= Exp ";";
+Return.   Stat ::= "return" Exp ";";
+If.       Stat ::= "if" "(" Exp ")" Stat "else" Stat;
+While.    Stat ::= "while" "(" Exp ")" Stat;
+-- implement while here
+
+BlockStat. Stat ::= "{" Seq "}";
+
+Assign. Exp  ::= Exp8 "=" Exp ;
+
+Or.  Exp1 ::= Exp1 "||"  Exp2 ;
+
+And. Exp2 ::= Exp2 "&&" Exp3 ;
+
+BinaryEQ. Exp3 ::= Exp3 "=="  Exp4 ;
+BinaryNE. Exp3 ::= Exp3 "!="  Exp4 ;
+
+BinaryLT. Exp4 ::= Exp4 "<"  Exp5 ;
+BinaryLE. Exp4 ::= Exp4 "<="  Exp5 ;
+BinaryGE. Exp4 ::= Exp4 ">="  Exp5 ;
+BinaryGT. Exp4 ::= Exp4 ">"  Exp5 ;
+
+BinaryAdd. Exp5 ::= Exp5 "+" Exp6 ;
+BinarySub. Exp5 ::= Exp5 "-" Exp6 ;
+
+BinaryMul. Exp6 ::= Exp6 "*" Exp7 ;
+BinaryDiv. Exp6 ::= Exp6 "/" Exp7 ;
+
+UnaryNot.  Exp7 ::= "!" Exp7;
+UnaryNeg.  Exp7 ::= "-" Exp7;
+Call.   Exp7 ::= Exp7 "(" [Exp] ")";
+
+-- implement Records here
+Record. Exp7 ::= "{" [Exp] "}";
+Item.   Exp7 ::= Ident ":" Exp7;
+List.   Exp7 ::= "[" [Exp] "]";
+Function. Exp7 ::= "function" "(" [Ident] ")" "{" Seq "}";
+String. Exp7 ::= String ;
+Int.    Exp7 ::= Integer ;
+TrueLit.  Exp7 ::= "true";
+FalseLit. Exp7 ::= "false";
+Null.   Exp7 ::= "null" ;
+Undef.  Exp7 ::= "undefined" ;
+
+Variable. Exp8 ::= Ident;
+This.     Exp8 ::= "this" ;
+Field.    Exp8 ::= Exp8 "." Ident;
+Lookup.   Exp8 ::= Exp8 "[" Exp "]";
+
+separator Ident "," ;
+separator Exp "," ;
+
+coercions Exp 8 ;
+
+comment "//" ;
+comment "/*" "*/" ;

@@ -1,0 +1,4 @@
+test a b c = if a>0
+             then b+c
+                  c+a
+             else 0
